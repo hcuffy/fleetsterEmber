@@ -1,0 +1,29 @@
+body {
+  background-color: #42c8f4;
+}
+
+.the-form {
+  width: 302px;
+  margin: auto;
+}
+
+.form-input {
+  width: 300px;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.submit-btn {
+  margin-top: 10px;
+  width: 70px;
+  height: 30px;
+  background-color: green;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.form-label {
+  float: right;
+  margin-top: 20px;
+  font-size: 15px;
+}
