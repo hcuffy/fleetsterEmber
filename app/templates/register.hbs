@@ -1,7 +1,7 @@
 <form class="the-form">
       <h1>Register</h1>
-      {{input type="text" class="form-input" placeholder="Enter a valid email"}}
-      {{input type="password" class="form-input" placeholder="Enter a valid email"}}
-      <button class="submit-btn" type="submit">Register</button>
+      {{input type="text" class="form-input" value=email placeholder="Enter a valid email"}}
+      {{input type="password" class="form-input" value=password placeholder="Enter a valid password"}}
+      <button class="submit-btn" {{action "registerPerson"}}>Register</button>
       <label class="form-label">{{#link-to "login"}}Login{{/link-to}}</label>
 </form>
