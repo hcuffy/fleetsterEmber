@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import $ from 'jquery';
 
-
 export default Controller.extend({
   actions: {
     registerPerson: function () {
@@ -16,10 +15,10 @@ export default Controller.extend({
         contentType: 'application/json',
         data: JSON.stringify( formData ),
         success: function () {
-          this.transitionToRoute('welcome');
+          this.transitionToRoute('login');
         },
         error: function () {
-          alert('Seems like the interwebs is broken. Try Again');
+          alert('Seems like the interwebs is broken. Try again please!');
         }
       });
     }

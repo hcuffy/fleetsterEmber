@@ -2,6 +2,6 @@
       <h1>Login</h1>
       {{input type="text" class="form-input" value=email placeholder="Enter your email"}}
       {{input type="password" class="form-input" value=password placeholder="Enter your email"}}
-      <button class="submit-btn" type="submit">Login</button>
+      <button class="submit-btn" {{action "loginPerson"}}>Login</button>
       <label class="form-label">{{#link-to "register"}}Register{{/link-to}}</label>
 </form>
