@@ -6,7 +6,7 @@ export default Controller.extend({
   actions: {
     registerPerson: function () {
       let formData = {
-        email: this.get('email'),
+        username: this.get('email'),
         password: this.get('password')
       }
 
@@ -14,7 +14,7 @@ export default Controller.extend({
         url: 'http://localhost:3030/users/signup',
         type: 'POST',
         contentType: 'application/json',
-        data: formData,
+        data: JSON.stringify( formData ),
         success: function () {
           this.transitionToRoute('welcome');
         },
