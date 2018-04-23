@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import $ from 'jquery';
 
 export default Controller.extend({
+
   actions: {
     loginPerson: function () {
       let formData = {
@@ -12,9 +13,10 @@ export default Controller.extend({
         url: 'http://localhost:3030/users/signin',
         type: 'POST',
         contentType: 'application/json',
-        data: JSON.stringify( formData ),
-        success: function () {
-          alert("yay");
+        data: JSON.stringify(formData),
+        success: () => {
+          this.set('email', '');
+          this.set('password', '');
           this.transitionToRoute('welcome');
         },
         error: function () {

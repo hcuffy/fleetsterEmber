@@ -27,3 +27,24 @@ body {
   margin-top: 20px;
   font-size: 15px;
 }
+
+.welcome-div {
+  margin: auto;
+  width: 300px;
+}
+
+.logout-btn {
+  margin-top: 10px;
+  width: 70px;
+  height: 30px;
+  background-color: red;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.user-label {
+  margin: auto;
+  border: solid;
+  border-width: 1px;
+  width: 300px;
+}
