@@ -1,7 +1,11 @@
 import Controller from '@ember/controller';
 import $ from 'jquery';
+import { inject } from '@ember/controller'; 
 
 export default Controller.extend({
+	
+   login : inject(),
+	
   actions: {
     logoutPerson: function () {
       $.ajax({
