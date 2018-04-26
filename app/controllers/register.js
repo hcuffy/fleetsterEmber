@@ -1,5 +1,8 @@
 import Controller from '@ember/controller';
 import $ from 'jquery';
+import {
+  inject
+} from '@ember/service';
 
 function validation(email, password) {
   let emailRegx = /(.+)@(.+){2,}\.(.+){2,}/;
@@ -13,14 +16,22 @@ function validation(email, password) {
 }
 
 export default Controller.extend({
+
+  notifications: inject('notification-messages'),
+
   actions: {
     registerPerson: function () {
+
       let formData = {
         username: this.get('email'),
         password: this.get('password')
       }
       if (!validation(formData.username, formData.password)) {
-        alert("Please enter a valid email address.\nThe password must be greater than five characters.")
+        this.get('notifications').error('Enter a valid email. Password must be greater than five characters.', {
+          autoClear: true,
+          clearDuration: 3000
+
+        });
         return;
       }
       $.ajax({
@@ -30,9 +41,16 @@ export default Controller.extend({
         data: JSON.stringify(formData),
         success: () => {
           this.transitionToRoute('login');
+          this.get('notifications').success('Registration was successful!', {
+            autoClear: true,
+            clearDuration: 3000
+          });
         },
-        error: function () {
-          alert('Seems like the interwebs is broken. Try again please!');
+        error: () => {
+          this.get('notifications').error('This email already exists.', {
+            autoClear: true,
+            clearDuration: 3000
+          });
         }
       });
     }

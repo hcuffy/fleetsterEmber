@@ -1,7 +1,12 @@
 import Controller from '@ember/controller';
 import $ from 'jquery';
+import {
+  inject
+} from '@ember/service';
+
 
 export default Controller.extend({
+  notifications: inject('notification-messages'),
 
   actions: {
     loginPerson: function () {
@@ -9,18 +14,30 @@ export default Controller.extend({
         username: this.get('email'),
         password: this.get('password')
       }
+
       $.ajax({
         url: 'http://localhost:3030/users/signin',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(formData),
-        success: () => {
+        success: (result) => {
+          alert(result);
           this.set('email', '');
           this.set('password', '');
+          localStorage.token = result.token;
+          sessionStorage.token = result.token;  
+          // TODO: add service save server response
           this.transitionToRoute('welcome');
+          this.get('notifications').success('Login was successful!', {
+            autoClear: true,
+            clearDuration: 3000
+          });
         },
-        error: function () {
-          alert('Seems like the interwebs is broken. Try again please!');
+        error: () => {
+          this.get('notifications').error('Your email/password was incorrect.', {
+            autoClear: true,
+            clearDuration: 3000
+          });
         }
       });
     }
