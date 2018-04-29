@@ -4,10 +4,9 @@ import {
   inject
 } from '@ember/service';
 
-
 export default Controller.extend({
   notifications: inject('notification-messages'),
-
+  session: inject(),
   actions: {
     loginPerson: function () {
       let formData = {
@@ -20,14 +19,11 @@ export default Controller.extend({
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(formData),
-        success: (result) => {
-          alert(result);
+        success: () => {
+          this.get('session').login(formData.username);
           this.set('email', '');
           this.set('password', '');
-          localStorage.token = result.token;
-          sessionStorage.token = result.token;  
-          // TODO: add service save server response
-          this.transitionToRoute('welcome');
+          this.transitionToRoute('auth.welcome');
           this.get('notifications').success('Login was successful!', {
             autoClear: true,
             clearDuration: 3000

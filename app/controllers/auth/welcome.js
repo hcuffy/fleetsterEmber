@@ -2,11 +2,11 @@ import Controller from '@ember/controller';
 import $ from 'jquery';
 import {
   inject
-} from '@ember/controller';
+} from '@ember/service';
 
 export default Controller.extend({
 
-  login: inject(),
+  session: inject(),
 
   actions: {
     logoutPerson: function () {
@@ -14,11 +14,12 @@ export default Controller.extend({
         url: 'http://localhost:3030/users/logout',
         type: 'GET',
         success: () => {
+          this.get('session').logout();
           this.transitionToRoute('login');
-          this.get('notifications').success('Logout was successful!', {
-            autoClear: true,
-            clearDuration: 3000
-          });
+          // this.get('notifications').success('Logout was successful!', {
+          //   autoClear: true,
+          //   clearDuration: 3000
+          // });
         },
         error: () => {
           this.get('notifications').error('Logout error try again.', {
