@@ -7,7 +7,5 @@ module.exports = function (defaults) {
     // Add options here
   });
 
-  app.import('bower_components/js-cookie/src/js.cookie.js');
-
   return app.toTree();
 };

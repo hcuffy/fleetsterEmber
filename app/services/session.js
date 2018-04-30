@@ -3,14 +3,16 @@ import Service from '@ember/service';
 
 export default Service.extend({
   currentUser: null,
-  login(user) {
+  login(user,result) {
     this.set('currentUser', user)
-    // TODO: Fix this cookie stuff...Cookies arn't defined.
-     // Cookies.set('username' , user)
+    localStorage.setItem('username' , user)
+    localStorage.setItem('token' ,result.token)
+
   },
   logout() {
     this.set('currentUser', null)
-    // Cookies.remove('username');
+     localStorage.removeItem('username')
+     localStorage.setItem('token', '')
   }
 
 });

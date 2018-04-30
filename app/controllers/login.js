@@ -19,8 +19,8 @@ export default Controller.extend({
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(formData),
-        success: () => {
-          this.get('session').login(formData.username);
+        success: (result) => {
+          this.get('session').login(formData.username, result);
           this.set('email', '');
           this.set('password', '');
           this.transitionToRoute('auth.welcome');
